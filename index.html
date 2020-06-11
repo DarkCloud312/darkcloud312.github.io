@@ -1,25 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Ejercicio Block de Notas</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <meta charset="UTF-8">
+
+  <!-- VUE BOOTSTRAP -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Load required Bootstrap and BootstrapVue CSS -->
+  <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.css" />
+  <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
+
+  <!-- Load polyfills to support older browsers -->
+  <script src="https://polyfill.io/v3/polyfill.js?features=es2015%2CIntersectionObserver"
+    crossorigin="anonymous"></script>
+
+  <!-- Load Vue followed by BootstrapVue -->
+  <script src="https://unpkg.com/vue@latest/dist/vue.js"></script>
+  <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+
+  <!-- Load the following for BootstrapVueIcons support -->
+  <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.js"></script>
+
+
+  <title>Provando vue bootstrap</title>
 </head>
+
 <body>
 
-    <div id="vm">
-        {{ msg }}
-    </div>
+  <!-- VUE HTML -->
 
-    <!-- VUE JAVASCRIPT -->
+  <!-- html de la SPA con VUE -->
+  <div id="app">
+    <b-navbar toggleable="md" variant="info">
+      <b-navbar-toggle target="navbar-collapse"></b-navbar-toggle>
+      <b-navbar-brand href="#">LOGO</b-navbar-brand>
+      <b-collapse id="navbar-collapse" is-nav>
+        <b-navbar-nav class="ml-auto">
+          <b-nav-item class="mx-auto" style="width: 200px; text-align: center;" :active="link1.active" :key="link1.id" @click="clickLink1">
+            Link1
+          </b-nav-item>
+          <b-nav-item class="mx-auto" style="width: 200px; text-align: center;" :active="link2.active" :key="link2.id" @click="clickLink2">
+            Link2
+          </b-nav-item>
+          <b-nav-item class="mx-auto" style="width: 200px; text-align: center;" :active="link3.active" :key="link3.id" @click="clickLink3">
+            Link3
+          </b-nav-item>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+    <b-container>
+      <b-row>
+        <b-col class="bg-danger" md="3" order-md="1" style="height: 100vh; text-align: center;">
+          <p>sidebar</p>
+        </b-col>
+        <b-col class="bg-secondary" md="9" style="height: 100vh; text-align: center;">
+          <p>main content</p>
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
 
-    <script>
-        let vm = new Vue({
-            el:'#vm',
-            data: {
-                msg: 'Tu mamá es hombre'
-            }
-        })
-    </script>
+  <!-- VUE JAVASCRIPT -->
+
+  <script>
+    let vm = new Vue({
+      el: '#app',
+      data: {
+        link1: {
+          id: 0,
+          active: true
+        },
+        link2: {
+          id: 1,
+          active: true
+        },
+        link3: {
+          id: 2,
+          active: true
+        },
+      },
+      methods: {
+        clickLink1: function () {
+          this.link1.active = true;
+          this.link2.active = false;
+          this.link3.active = false;
+        },
+        clickLink2: function () {
+          this.link1.active = false;
+          this.link2.active = true;
+          this.link3.active = false;
+        },
+        clickLink3: function () {
+          this.link1.active = false;
+          this.link2.active = false;
+          this.link3.active = true;
+        },
+      }
+    });
+  </script>
+
 </body>
+
 </html>
